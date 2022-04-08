@@ -2,11 +2,12 @@ const webdriver = require('selenium-webdriver');
 const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
-async function runTestWithCaps(cap) {
-  let driver = new webdriver.Builder().usingServer(`https://hub-cloud.browserstack.com/wd/hub`).withCapabilities(cap).build();
+async function runTestWithCaps (capabilities) {
+  let driver = new webdriver.Builder().usingServer(`https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub`).withCapabilities(capabilities).build();
   try{
     await driver.get("https://bstackdemo.com/");
     await driver.wait(webdriver.until.titleMatches(/StackDemo/i), 10000);
+
     // locating product on webpage
     const productOnScreen = await driver.wait(webdriver.until.elementLocated(By.xpath('//*[@id="1"]/p')), 10000)
     // getting name of the product when the product is visible
@@ -27,60 +28,53 @@ async function runTestWithCaps(cap) {
     );
   } catch(e) {
     //marking the test as Failed if product has not been added to the cart
-    console.log("Error:", e.message)
     await driver.executeScript(
-      'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed","reason": "Some elements failed to load."}}'
+      'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed","reason": "Some elements failed to load"}}'
     );
   }
   await driver.quit();
 }
 
-// Input capabilities
-var capabilities = [
-    {
-        'bstack:options' : {
-            "os" : "OS X",
-            "osVersion" : "Sierra",
-            "buildName" : "parallel-snippet-test",
-            "sessionName" : "Selenium-4 Nodejs snippet test",
-            "local" : "false",
-            "seleniumVersion" : "4.0.0",
-            "userName" : "USER_NAME",
-            "accessKey" : "ACCESS_KEY",
-        },
-        "browserName" : "Chrome",
-        "browserVersion" : "latest",
-    },
-    {
-        'bstack:options' : {
-            "os" : "OS X",
-            "osVersion" : "Sierra",
-            "buildName" : "parallel-snippet-test",
-            "sessionName" : "Selenium-4 Nodejs snippet test",
-            "local" : "false",
-            "seleniumVersion" : "4.0.0",
-            "userName" : "USER_NAME",
-            "accessKey" : "ACCESS_KEY",
-        },
-        "browserName" : "Firefox",
-        "browserVersion" : "latest",
-    },
-    {
-        'bstack:options' : {
-            "os" : "OS X",
-            "osVersion" : "Sierra",
-            "buildName" : "parallel-snippet-test",
-            "sessionName" : "Selenium-4 Nodejs snippet test",
-            "local" : "false",
-            "seleniumVersion" : "4.0.0",
-            "userName" : "USER_NAME",
-            "accessKey" : "ACCESS_KEY",
-        },
-        "browserName" : "Edge",
-        "browserVersion" : "latest",
-    }
-]
+// input capabilities
+const capabilities = [{
+'os_version': '10',
+'browserName': 'Chrome',
+'browser_version': 'latest',
+'os': 'Windows',
+'build': 'BStack-[NodeJS] Sample Build',
+'name': 'Parallel test 1'
+},
+{
+  'os_version': 'Monterey',
+  'browserName': 'Chrome',
+  'browser_version': 'latest',
+  'os': 'OS X',
+  'build': 'BStack-[NodeJS] Sample Build',
+  'name': 'Parallel test 2'
+},
+{
+  'os_version' : 'Big Sur',
+  'browserName' : 'Safari',
+  'os' : 'OS X',
+  'build': 'BStack-[NodeJS] Sample Build',
+  'name': 'Parallel test 3'
+},
+{
+  'browserName': 'Android',
+  'device': 'Samsung Galaxy S20',
+  'realMobile': 'true',
+  'build': 'BStack-[NodeJS] Sample Build',
+  'name': 'Parallel test 4'
+},
+{
+  'browserName': 'iPhone',
+  'device': 'iPhone 12 Pro Max',
+  'realMobile': 'true',
+  'build': 'BStack-[NodeJS] Sample Build',
+  'name': 'Parallel test 5'
+}];
 
+// The following code runs the test function as many times the capabilities are defined
 capabilities.map(async (caps) => {
-    await runTestWithCaps(caps);
-});
+  await runTestWithCaps(caps);
+  });

@@ -2,25 +2,16 @@ const webdriver = require('selenium-webdriver');
 const { By } = require('selenium-webdriver');
 const assert = require('assert');
 // Input capabilities
-var capabilities = {
-	'bstack:options' : {
-		"os" : "OS X",
-		"osVersion" : "Sierra",
-		"buildName" : "Final-Snippet-Test",
-		"sessionName" : "Selenium-4 Nodejs snippet test",
-		"local" : "false",
-		"seleniumVersion" : "4.0.0",
-		"userName" : "USER_NAME",
-		"accessKey" : "ACCESS_KEY",
-	},
-	"browserName" : "Chrome",
-	"browserVersion" : "latest",
+const capabilities = {
+ 'device' : 'iPhone 11',
+ 'realMobile' : 'true',
+ 'os_version' : '14.0',
+ 'browserName' : 'iPhone',
+ 'name': 'BStack-[NodeJS] Sample Test', // test name
+ 'build': 'BStack Build Number 1' // CI/CD job or build name
 }
-
 async function runTestWithCaps () {
-  const username = ""
-  const accesskey = ""
-  let driver = new webdriver.Builder().usingServer(`https://hub-cloud.browserstack.com/wd/hub`).withCapabilities(capabilities).build();
+  let driver = new webdriver.Builder().usingServer(`https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub`).withCapabilities(capabilities).build();
   try{
     await driver.get("https://bstackdemo.com/");
     await driver.wait(webdriver.until.titleMatches(/StackDemo/i), 10000);
