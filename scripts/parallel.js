@@ -1,6 +1,8 @@
 const webdriver = require('selenium-webdriver');
 const { By } = require('selenium-webdriver');
 const assert = require('assert');
+// Input capabilities
+var { parallelTestCapabilities } = require('../conf')
 
 async function runTestWithCaps(cap) {
   let driver = new webdriver.Builder().usingServer(`https://hub-cloud.browserstack.com/wd/hub`).withCapabilities(cap).build();
@@ -35,52 +37,7 @@ async function runTestWithCaps(cap) {
   await driver.quit();
 }
 
-// Input capabilities
-var capabilities = [
-    {
-        'bstack:options' : {
-            "os" : "OS X",
-            "osVersion" : "Sierra",
-            "buildName" : "parallel-snippet-test",
-            "sessionName" : "Selenium-4 Nodejs snippet test",
-            "local" : "false",
-            "seleniumVersion" : "4.0.0",
-            "userName" : "USER_NAME",
-            "accessKey" : "ACCESS_KEY",
-        },
-        "browserName" : "Chrome",
-        "browserVersion" : "latest",
-    },
-    {
-        'bstack:options' : {
-            "os" : "OS X",
-            "osVersion" : "Sierra",
-            "buildName" : "parallel-snippet-test",
-            "sessionName" : "Selenium-4 Nodejs snippet test",
-            "local" : "false",
-            "seleniumVersion" : "4.0.0",
-            "userName" : "USER_NAME",
-            "accessKey" : "ACCESS_KEY",
-        },
-        "browserName" : "Firefox",
-        "browserVersion" : "latest",
-    },
-    {
-        'bstack:options' : {
-            "os" : "OS X",
-            "osVersion" : "Sierra",
-            "buildName" : "parallel-snippet-test",
-            "sessionName" : "Selenium-4 Nodejs snippet test",
-            "local" : "false",
-            "seleniumVersion" : "4.0.0",
-            "userName" : "USER_NAME",
-            "accessKey" : "ACCESS_KEY",
-        },
-        "browserName" : "Edge",
-        "browserVersion" : "latest",
-    }
-]
-
-capabilities.map(async (caps) => {
-    await runTestWithCaps(caps);
+parallelTestCapabilities.map(async (caps) => {
+  console.log(caps['bstack:options'].userName);
+  await runTestWithCaps(caps);
 });
