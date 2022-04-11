@@ -8,7 +8,7 @@ https://nodejs.org/en/
 <b>Step-1</b><br>
 Clone the repo, go to the cloned directory and install the dependencies with commands: <br/>
 ```
-git clone https://github.com/browserstack/node-js-selenium-browserstack.git
+git clone -b selenium-4 https://github.com/browserstack/node-js-selenium-browserstack.git
 cd node-js-selenium-browserstack
 npm install 
 ```
