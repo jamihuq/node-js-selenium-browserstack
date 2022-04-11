@@ -16,7 +16,7 @@ Configure the capabilities and swap your credentials. <br/>
 If you wish to run a single test <br/>
 1. navigate to /script/single.js
 2. Change the OS or browser if you want.
-3. Use your BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESSKEY from the dashboard.
+3. Use your BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESS_KEY from the dashboard.
 
 ```javascript
 var capabilities = {
