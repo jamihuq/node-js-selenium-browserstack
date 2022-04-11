@@ -37,4 +37,3 @@ async function runTestWithCaps () {
   await driver.quit();
 }
 runTestWithCaps();
- 
