@@ -1,7 +1,7 @@
 exports.hubURL = "https://hub.browserstack.com/wd/hub"
 
 const userCredentials = {
-  "userName": process.env["BROWSERSTACK_USERNAME"] || "YOUR_USER_NAME",
+  "userName": process.env["BROWSERSTACK_USERNAME"] || "YOUR_USERNAME",
   "accessKey": process.env["BROWSERSTACK_ACCESS_KEY"] || "YOUR_ACCESS_KEY"
 }
 
