@@ -1,9 +1,11 @@
 const webdriver = require('selenium-webdriver');
 const { By } = require('selenium-webdriver');
 const assert = require('assert');
+// Input capabilities
+var { parallelTestCapabilities, userName, accessKey } = require('../conf')
 
 async function runTestWithCaps (capabilities) {
-  let driver = new webdriver.Builder().usingServer(`https://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub`).withCapabilities(capabilities).build();
+  let driver = new webdriver.Builder().usingServer(`https://${userName}:${accessKey}@hub-cloud.browserstack.com/wd/hub`).withCapabilities(capabilities).build();
   try{
     await driver.get("https://bstackdemo.com/");
     await driver.wait(webdriver.until.titleMatches(/StackDemo/i), 10000);
@@ -35,46 +37,7 @@ async function runTestWithCaps (capabilities) {
   await driver.quit();
 }
 
-// input capabilities
-const capabilities = [{
-'os_version': '10',
-'browserName': 'Chrome',
-'browser_version': 'latest',
-'os': 'Windows',
-'build': 'BStack-[NodeJS] Sample Build',
-'name': 'Parallel test 1'
-},
-{
-  'os_version': 'Monterey',
-  'browserName': 'Chrome',
-  'browser_version': 'latest',
-  'os': 'OS X',
-  'build': 'BStack-[NodeJS] Sample Build',
-  'name': 'Parallel test 2'
-},
-{
-  'os_version' : 'Big Sur',
-  'browserName' : 'Safari',
-  'os' : 'OS X',
-  'build': 'BStack-[NodeJS] Sample Build',
-  'name': 'Parallel test 3'
-},
-{
-  'browserName': 'Android',
-  'device': 'Samsung Galaxy S20',
-  'realMobile': 'true',
-  'build': 'BStack-[NodeJS] Sample Build',
-  'name': 'Parallel test 4'
-},
-{
-  'browserName': 'iPhone',
-  'device': 'iPhone 12 Pro Max',
-  'realMobile': 'true',
-  'build': 'BStack-[NodeJS] Sample Build',
-  'name': 'Parallel test 5'
-}];
-
-// The following code runs the test function as many times the capabilities are defined
-capabilities.map(async (caps) => {
+parallelTestCapabilities.map(async (caps) => {
+  console.log(caps['bstack:options'].userName);
   await runTestWithCaps(caps);
-  });
+});
