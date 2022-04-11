@@ -1,10 +1,16 @@
+const userCredentials = {
+  'browserstack.user': process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
+  'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY'
+}
+
 exports.singleTestCapabilities = {
   'device' : 'iPhone 11',
   'realMobile' : 'true',
   'os_version' : '14.0',
   'browserName' : 'iPhone',
   'name': 'BStack-[NodeJS] Sample Test', // test name
-  'build': 'BStack Build Number 1' // CI/CD job or build name
+  'build': 'browserstack-build-1', // CI/CD job or build name
+  ...userCredentials
 }
 
 exports.localTestCapabilities = {
@@ -14,7 +20,8 @@ exports.localTestCapabilities = {
   'browserName' : 'iPhone',
   'browserstack.local' : 'true',
   'name': 'BStack-[NodeJS] Sample Test', // test name
-  'build': 'BStack Build Number 1' // CI/CD job or build name
+  'build': 'browserstack-build-1', // CI/CD job or build name
+  ...userCredentials
 }
 
 exports.parallelTestCapabilities = [
@@ -23,39 +30,41 @@ exports.parallelTestCapabilities = [
     'browserName': 'Chrome',
     'browser_version': 'latest',
     'os': 'Windows',
-    'build': 'BStack-[NodeJS] Sample Build',
-    'name': 'Parallel test 1'
+    'build': 'browserstack-build-1',
+    'name': 'Parallel test 1',
+    ...userCredentials
   },
   {
     'os_version': 'Monterey',
     'browserName': 'Chrome',
     'browser_version': 'latest',
     'os': 'OS X',
-    'build': 'BStack-[NodeJS] Sample Build',
-    'name': 'Parallel test 2'
+    'build': 'browserstack-build-1',
+    'name': 'Parallel test 2',
+    ...userCredentials
   },
   {
     'os_version' : 'Big Sur',
     'browserName' : 'Safari',
     'os' : 'OS X',
-    'build': 'BStack-[NodeJS] Sample Build',
-    'name': 'Parallel test 3'
+    'build': 'browserstack-build-1',
+    'name': 'Parallel test 3',
+    ...userCredentials
   },
   {
     'browserName': 'Android',
     'device': 'Samsung Galaxy S20',
     'realMobile': 'true',
-    'build': 'BStack-[NodeJS] Sample Build',
-    'name': 'Parallel test 4'
+    'build': 'browserstack-build-1',
+    'name': 'Parallel test 4',
+    ...userCredentials
   },
   {
     'browserName': 'iPhone',
     'device': 'iPhone 12 Pro Max',
     'realMobile': 'true',
-    'build': 'BStack-[NodeJS] Sample Build',
-    'name': 'Parallel test 5'
+    'build': 'browserstack-build-1',
+    'name': 'Parallel test 5',
+    ...userCredentials
   }
 ];
-
-exports.userName = process.env["BROWSERSTACK_USER_NAME"] || "YOUR_USER_NAME";
-exports.accessKey = process.env["BROWSERSTACK_ACCESS_KEY"] || "YOUR_ACCESS_KEY";

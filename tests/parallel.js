@@ -2,24 +2,52 @@ const webdriver = require('selenium-webdriver');
 const { By } = require('selenium-webdriver');
 const assert = require('assert');
 // Input capabilities
-var { parallelTestCapabilities, userName, accessKey } = require('../conf')
+var { parallelTestCapabilities } = require('../conf')
 
 async function runTestWithCaps (capabilities) {
-  let driver = new webdriver.Builder().usingServer(`https://${userName}:${accessKey}@hub-cloud.browserstack.com/wd/hub`).withCapabilities(capabilities).build();
+  let driver = new webdriver
+    .Builder()
+    .usingServer(`https://hub-cloud.browserstack.com/wd/hub`)
+    .withCapabilities(capabilities)
+    .build();
+    
   try{
     await driver.get("https://bstackdemo.com/");
     await driver.wait(webdriver.until.titleMatches(/StackDemo/i), 10000);
 
     // locating product on webpage
-    const productOnScreen = await driver.wait(webdriver.until.elementLocated(By.xpath('//*[@id="1"]/p')), 10000)
+    const productOnScreen = await driver.wait(
+      webdriver.until.elementLocated(
+        By.xpath('//*[@id="1"]/p')
+      ), 10000
+    )
     // getting name of the product when the product is visible
-    const productText =  await driver.wait(webdriver.until.elementIsVisible(productOnScreen, 10000)).getText();
+    const productText =  await driver.wait(
+      webdriver.until.elementIsVisible(
+        productOnScreen, 
+      10000)
+    ).getText();
     // clicking the 'Add to cart' button
-    await driver.wait(webdriver.until.elementIsVisible(driver.findElement(By.xpath('//*[@id="1"]/div[4]'), 10000))).click();
+    await driver.wait(
+      webdriver.until.elementIsVisible(
+        driver.findElement(By.xpath('//*[@id="1"]/div[4]')
+        , 10000)
+      )
+    ).click();
     // waiting until the Cart pane has been displayed on the webpage
-    await driver.wait(webdriver.until.elementIsVisible(driver.findElement(By.className('float-cart__content'), 10000)));
+    await driver.wait(
+      webdriver.until.elementIsVisible(
+        driver.findElement(By.className('float-cart__content'), 10000)
+      )
+    );
     // locating product in cart
-    const productInCart = await driver.wait(webdriver.until.elementLocated(By.xpath('//*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[3]/p[1]')), 10000);
+    const productInCart = await driver.wait(
+      webdriver.until.elementLocated(
+        By.xpath(
+          '//*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[3]/p[1]'
+        )
+      ), 10000
+    );
     // getting name of the product in cart if the product is visible on web page
     const productCartText =  await driver.wait(webdriver.until.elementIsVisible(productInCart, 10000)).getText();
     // checking whether product has been added to cart by comparing product name
@@ -33,11 +61,13 @@ async function runTestWithCaps (capabilities) {
     await driver.executeScript(
       'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed","reason": "Some elements failed to load"}}'
     );
+  } finally {
+    if(driver){
+      await driver.quit();
+    }
   }
-  await driver.quit();
 }
 
 parallelTestCapabilities.map(async (caps) => {
-  console.log(caps['bstack:options'].userName);
   await runTestWithCaps(caps);
 });
