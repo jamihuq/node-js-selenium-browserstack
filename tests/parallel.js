@@ -67,6 +67,8 @@ async function runTestWithCaps(capabilities) {
   }
 }
 
-parallelTestCapabilities.map(async (caps) => {
+parallelTestCapabilities.map(async (caps, _i) => {
+  console.log(`Started Parallel test ${_i + 1}`);
   await runTestWithCaps(caps);
+  console.log(`Completed Parallel test ${_i + 1}`);
 });
