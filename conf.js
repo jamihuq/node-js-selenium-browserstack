@@ -3,7 +3,7 @@ const userCredentials = {
   'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY'
 }
 
-exports.hubURL = "https://hub-cloud.browserstack.com/wd/hub"
+exports.hubURL = "https://hub.browserstack.com/wd/hub"
 
 exports.singleTestCapabilities = {
   'device': 'iPhone 11',
