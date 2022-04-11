@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "single": "node ./scripts/single.js",
-    "parallel": "node ./scripts/parallel.js",
-    "local": "node ./scripts/local.js"
+    "single": "node ./tests/single.js",
+    "parallel": "node ./tests/parallel.js",
+    "local": "node ./tests/local.js"
   },
   "dependencies": {
     "selenium-webdriver": "4.1.0",
