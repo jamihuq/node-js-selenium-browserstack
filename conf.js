@@ -4,7 +4,7 @@ exports.singleTestCapabilities = {
   'bstack:options': {
     "os": "OS X",
     "osVersion": "Sierra",
-    "buildName": "Final-Snippet-Test",
+    "buildName": "browserstack-build-1",
     "sessionName": "Selenium-4 Nodejs snippet test",
     "local": "false",
     "seleniumVersion": "4.0.0",
@@ -31,7 +31,7 @@ exports.localTestCapabilities = {
 }
 
 const parallelTestBaseCapability = {
-  "buildName": "parallel-snippet-test",
+  "buildName": "browserstack-build-1",
   "local": "false",
   "seleniumVersion": "4.0.0",
   "userName": process.env["BROWSERSTACK_USER_NAME"] || "YOUR_USER_NAME",
