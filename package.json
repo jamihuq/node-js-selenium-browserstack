@@ -1,0 +1,19 @@
+{
+  "name": "js-browserstack",
+  "version": "1.0.0",
+  "description": "Sample code repository to run selenium tests on browserstack using NodeJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "single": "node ./tests/single.js",
+    "parallel": "node ./tests/parallel.js",
+    "local": "node ./tests/local.js"
+  },
+  "dependencies": {
+    "selenium-webdriver": "3.1.0",
+    "browserstack-local": "^1.4.9"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
