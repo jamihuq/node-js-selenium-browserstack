@@ -42,8 +42,4 @@ npm run local
 To run a parallel test session:
 ``` 
 npm run parallel
-<<<<<<< HEAD
 ```
-=======
-```
->>>>>>> 61f652f4924a8c7bf6a3db59cef340c247bdfb46
