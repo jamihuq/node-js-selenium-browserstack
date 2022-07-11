@@ -1,72 +1,74 @@
-const userCredentials = {
-  'browserstack.user': process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-  'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY'
-}
-
 exports.hubURL = "https://hub.browserstack.com/wd/hub"
 
+const userCredentials = {
+  "userName": process.env["BROWSERSTACK_USERNAME"] || "YOUR_USERNAME",
+  "accessKey": process.env["BROWSERSTACK_ACCESS_KEY"] || "YOUR_ACCESS_KEY"
+}
+
 exports.singleTestCapabilities = {
-  'device': 'iPhone 11',
-  'realMobile': 'true',
-  'os_version': '14.0',
-  'browserName': 'iPhone',
-  'name': 'BStack-[NodeJS] Sample Test', // test name
-  'build': 'browserstack-build-1', // CI/CD job or build name
-  ...userCredentials
+  'bstack:options': {
+    "os": "OS X",
+    "osVersion": "Sierra",
+    "buildName": "browserstack-build-1",
+    "sessionName": "Selenium-4 Nodejs snippet test",
+    "local": "false",
+    "seleniumVersion": "4.0.0",
+    ...userCredentials,
+  },
+  "browserName": "Chrome",
+  "browserVersion": "latest",
 }
 
 exports.localTestCapabilities = {
-  'device': 'iPhone 11',
-  'realMobile': 'true',
-  'os_version': '14.0',
-  'browserName': 'iPhone',
-  'browserstack.local': 'true',
-  'name': 'BStack-[NodeJS] Sample Test', // test name
-  'build': 'browserstack-build-1', // CI/CD job or build name
-  ...userCredentials
+  'bstack:options': {
+    "os": "OS X",
+    "osVersion": "Sierra",
+    "buildName": "browserstack-build-1",
+    "sessionName": "Selenium-4 Nodejs snippet test",
+    "local": "true",
+    "seleniumVersion": "4.0.0",
+    ...userCredentials
+  },
+  "browserName": "Chrome",
+  "browserVersion": "latest",
 }
+
+const parallelTestBaseCapability = {
+  "buildName": "browserstack-build-1",
+  "local": "false",
+  "seleniumVersion": "4.0.0",
+  ...userCredentials
+};
 
 exports.parallelTestCapabilities = [
   {
-    'os_version': '10',
-    'browserName': 'Chrome',
-    'browser_version': 'latest',
-    'os': 'Windows',
-    'build': 'browserstack-build-1',
-    'name': 'Parallel test 1',
-    ...userCredentials
+    'bstack:options': {
+      "os": "OS X",
+      "osVersion": "Sierra",
+      "sessionName": "Selenium-4 Nodejs snippet test",
+      ...parallelTestBaseCapability
+    },
+    "browserName": "Chrome",
+    "browserVersion": "latest",
   },
   {
-    'os_version': 'Monterey',
-    'browserName': 'Chrome',
-    'browser_version': 'latest',
-    'os': 'OS X',
-    'build': 'browserstack-build-1',
-    'name': 'Parallel test 2',
-    ...userCredentials
+    'bstack:options': {
+      "os": "OS X",
+      "osVersion": "Sierra",
+      "sessionName": "Selenium-4 Nodejs snippet test",
+      ...parallelTestBaseCapability
+    },
+    "browserName": "Safari",
+    "browserVersion": "latest",
   },
   {
-    'os_version': 'Big Sur',
-    'browserName': 'Safari',
-    'os': 'OS X',
-    'build': 'browserstack-build-1',
-    'name': 'Parallel test 3',
-    ...userCredentials
+    'bstack:options': {
+      "os": "windows",
+      "osVersion": "11",
+      "sessionName": "Selenium-4 Nodejs snippet test",
+      ...parallelTestBaseCapability
+    },
+    "browserName": "Chrome",
+    "browserVersion": "latest",
   },
-  {
-    'browserName': 'Android',
-    'device': 'Samsung Galaxy S20',
-    'realMobile': 'true',
-    'build': 'browserstack-build-1',
-    'name': 'Parallel test 4',
-    ...userCredentials
-  },
-  {
-    'browserName': 'iPhone',
-    'device': 'iPhone 12 Pro Max',
-    'realMobile': 'true',
-    'build': 'browserstack-build-1',
-    'name': 'Parallel test 5',
-    ...userCredentials
-  }
 ];
