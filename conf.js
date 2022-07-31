@@ -1,14 +1,14 @@
 exports.hubURL = "https://hub.browserstack.com/wd/hub"
 
 const userCredentials = {
-  "userName": process.env["BROWSERSTACK_USERNAME"] || "YOUR_USERNAME",
-  "accessKey": process.env["BROWSERSTACK_ACCESS_KEY"] || "YOUR_ACCESS_KEY"
+  "userName": process.env["BROWSERSTACK_USERNAME"] || "ziahuq_blYaNV",
+  "accessKey": process.env["BROWSERSTACK_ACCESS_KEY"] || "UzhT7avEeGYzPpdsNhyf"
 }
 
 exports.singleTestCapabilities = {
   'bstack:options': {
     "os": "OS X",
-    "osVersion": "Sierra",
+    "osVersion": "Monterey",
     "buildName": "browserstack-build-1",
     "sessionName": "Selenium-4 Nodejs snippet test",
     "local": "false",
@@ -22,7 +22,7 @@ exports.singleTestCapabilities = {
 exports.localTestCapabilities = {
   'bstack:options': {
     "os": "OS X",
-    "osVersion": "Sierra",
+    "osVersion": "Monterey",
     "buildName": "browserstack-build-1",
     "sessionName": "Selenium-4 Nodejs snippet test",
     "local": "true",
@@ -44,7 +44,7 @@ exports.parallelTestCapabilities = [
   {
     'bstack:options': {
       "os": "OS X",
-      "osVersion": "Sierra",
+      "osVersion": "Monterey",
       "sessionName": "Selenium-4 Nodejs snippet test",
       ...parallelTestBaseCapability
     },
@@ -54,7 +54,7 @@ exports.parallelTestCapabilities = [
   {
     'bstack:options': {
       "os": "OS X",
-      "osVersion": "Sierra",
+      "osVersion": "Monterey",
       "sessionName": "Selenium-4 Nodejs snippet test",
       ...parallelTestBaseCapability
     },
@@ -63,12 +63,33 @@ exports.parallelTestCapabilities = [
   },
   {
     'bstack:options': {
-      "os": "windows",
-      "osVersion": "11",
+      "os": "OS X",
+      "osVersion": "Monterey",
       "sessionName": "Selenium-4 Nodejs snippet test",
       ...parallelTestBaseCapability
     },
     "browserName": "Chrome",
     "browserVersion": "latest",
   },
+  {
+    'bstack:options': {
+      "os": "OS X",
+      "osVersion": "Monterey",
+      "sessionName": "Selenium-4 Nodejs snippet test",
+      ...parallelTestBaseCapability
+    },
+    "browserName": "Chrome",
+    "browserVersion": "latest",
+  },
+  {
+    'bstack:options': {
+      "os": "OS X",
+      "osVersion": "Monterey",
+      "sessionName": "Selenium-4 Nodejs snippet test",
+      ...parallelTestBaseCapability
+    },
+    "browserName": "Chrome",
+    "browserVersion": "latest",
+  },
+
 ];
