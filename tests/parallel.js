@@ -49,6 +49,13 @@ async function runTestWithCaps(capabilities) {
     );
     // getting name of the product in cart if the product is visible on web page
     const productCartText = await driver.wait(webdriver.until.elementIsVisible(productInCart, 10000)).getText();
+    
+/* Hamza - Add here 2 more Assert calls
+
+    Assert.assertEquals(ExpectedTitle, ActualTitle);
+    Assert.assertNotEquals(ActualTitle, ExpectedTitle);
+*/
+
     // checking whether product has been added to cart by comparing product name
     assert(productText === productCartText);
     //marking the test as Passed if product has been added to the cart
