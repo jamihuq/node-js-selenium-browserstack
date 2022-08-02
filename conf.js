@@ -45,7 +45,7 @@ exports.parallelTestCapabilities = [
     'bstack:options': {
       "os": "OS X",
       "osVersion": "Monterey",
-      "sessionName": "Selenium-4 Nodejs snippet test",
+      "sessionName": "Selenium-4 Nodejs snippet test1",
       ...parallelTestBaseCapability
     },
     "browserName": "Chrome",
@@ -55,7 +55,7 @@ exports.parallelTestCapabilities = [
     'bstack:options': {
       "os": "OS X",
       "osVersion": "Monterey",
-      "sessionName": "Selenium-4 Nodejs snippet test",
+      "sessionName": "Selenium-4 Nodejs snippet test2",
       ...parallelTestBaseCapability
     },
     "browserName": "Safari",
@@ -65,7 +65,7 @@ exports.parallelTestCapabilities = [
     'bstack:options': {
       "os": "OS X",
       "osVersion": "Monterey",
-      "sessionName": "Selenium-4 Nodejs snippet test",
+      "sessionName": "Selenium-4 Nodejs snippet test3",
       ...parallelTestBaseCapability
     },
     "browserName": "Chrome",
@@ -75,7 +75,7 @@ exports.parallelTestCapabilities = [
     'bstack:options': {
       "os": "OS X",
       "osVersion": "Monterey",
-      "sessionName": "Selenium-4 Nodejs snippet test",
+      "sessionName": "Selenium-4 Nodejs snippet test4",
       ...parallelTestBaseCapability
     },
     "browserName": "Chrome",
@@ -85,7 +85,7 @@ exports.parallelTestCapabilities = [
     'bstack:options': {
       "os": "OS X",
       "osVersion": "Monterey",
-      "sessionName": "Selenium-4 Nodejs snippet test",
+      "sessionName": "Selenium-4 Nodejs snippet test5",
       ...parallelTestBaseCapability
     },
     "browserName": "Chrome",
